@@ -15,4 +15,5 @@ public:
     virtual void update() = 0;
     virtual void render(sf::RenderWindow& window) = 0;
     std::string getIdentifier() const;
+    virtual void handleEvent(const sf::Event& event, sf::RenderWindow& window) { };
 };

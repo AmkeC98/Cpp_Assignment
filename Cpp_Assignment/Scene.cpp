@@ -33,3 +33,11 @@ std::string Scene::getIdentifier() const
 {
     return this->identifier;
 }
+
+void Scene::handleEvent(const sf::Event& event, sf::RenderWindow& window) 
+{
+    for (unsigned int i = 0; i < this->listOfGameObjects.size(); i++) 
+    {
+        this->listOfGameObjects[i]->handleEvent(event, window);
+    }
+}

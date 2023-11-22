@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <string>
-#include "gameObject.hpp"
+#include "GameObject.hpp"
 
 class Scene 
 {
@@ -18,4 +18,5 @@ public:
     void render(sf::RenderWindow& window);
     void addGameObject(GameObject& object);
     std::string getIdentifier() const;
+    void handleEvent(const sf::Event& event, sf::RenderWindow& window);
 };
