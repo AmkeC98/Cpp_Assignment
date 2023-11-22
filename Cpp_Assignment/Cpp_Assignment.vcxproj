@@ -134,10 +134,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FpsCounter.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneHandler.cpp" />
+    <ClCompile Include="SpriteObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FpsCounter.hpp" />
+    <ClInclude Include="GameObject.hpp" />
+    <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="SceneHandler.hpp" />
+    <ClInclude Include="SpriteObject.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

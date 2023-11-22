@@ -12,6 +12,6 @@ public:
     FPSCounter();
     ~FPSCounter();
 
-    void render(sf::RenderWindow& window);
     void update(sf::Time elapsed);
+    void render(sf::RenderWindow& window);
 };
