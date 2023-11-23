@@ -44,19 +44,19 @@ int main()
 
     //Add the Play Game button
     PlayButton playButton("playButton", font, "PLAY", sf::Vector2f(192.5f, 50.0f), darkColor, window);
-    playButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playButton.setPosition(sf::Vector2f(942.0f, 235.0f));
 
     //Add the Erase Data button
     EraseButton eraseButton("eraseButton", font, "ERASE", sf::Vector2f(192.5f, 50.0f), darkColor, window);
-    eraseButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+    eraseButton.setPosition(sf::Vector2f(942.0f, 335.0f));
 
     //Add the Quit Game button
     QuitButton quitButton("quitButton", font, "QUIT", sf::Vector2f(192.5f, 50.0f), darkColor, window);
-    quitButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+    quitButton.setPosition(sf::Vector2f(942.0f, 435.0f));
 
     //Add the Rankings text
     TextObject rankingsText("rankingsText", font, "PLACEHOLDER TEXT");
-    rankingsText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    rankingsText.setPosition(sf::Vector2f(200.0f, 235.0f));
     rankingsText.setCharacterSize(characterSize);
     rankingsText.setFillColor(darkColor);
 
@@ -72,23 +72,23 @@ int main()
 
     //Add the Attack button
     AttackButton attackButton("attackButton", font, "ATTACK", sf::Vector2f(192.5f, 50.0f), darkColor, window);
-    attackButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+    attackButton.setPosition(sf::Vector2f(400.0f, 540.0f));
 
     //Add the Heal button
     HealButton healButton("healButton", font, "HEAL", sf::Vector2f(192.5f, 50.0f), darkColor, window);
-    healButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+    healButton.setPosition(sf::Vector2f(700.0f, 540.0f));
 
     //Add the Continue button
     ContinueButton continueButton("continueButton", font, "CONTINUE", sf::Vector2f(192.5f, 50.0f), darkColor, window);
-    continueButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+    continueButton.setPosition(sf::Vector2f(700.0f, 620.0f));
 
     //Add the Menu button
     MenuButton menuButton("menuButton", font, "MENU", sf::Vector2f(192.5f, 50.0f), darkColor, window);
-    menuButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+    menuButton.setPosition(sf::Vector2f(400.0f, 620.0f));
 
     //Add the results text
     TextObject resultsText("resultsText", font, "PLACEHOLDER TEXT");
-    resultsText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    resultsText.setPosition(sf::Vector2f(400.0f, 400.0f));
     resultsText.setCharacterSize(characterSize);
     resultsText.setFillColor(darkColor);
 
@@ -98,30 +98,30 @@ int main()
 
     //Add the player sprite
     SpriteObject playerSprite("playerSprite", player.getSpriteFile());
-    playerSprite.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerSprite.setPosition(sf::Vector2f(250.0f, 100.0f));
     playerSprite.setScale(sf::Vector2f(1.0f, 1.0f));
 
     //Add the player name text
     TextObject playerNameText("playerNameText", font, "NAME: X");
-    playerNameText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerNameText.setPosition(sf::Vector2f(250.0f, 200.0f));
     playerNameText.setCharacterSize(characterSize);
     playerNameText.setFillColor(darkColor);
 
     //Add the player hp text
     TextObject playerHpText("playerHpText", font, "HP: 0");
-    playerHpText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerHpText.setPosition(sf::Vector2f(250.0f, 230.0f));
     playerHpText.setCharacterSize(characterSize);
     playerHpText.setFillColor(darkColor);
 
     //Add the player att text
     TextObject playerAttText("playerAttText", font, "ATT: 0");
-    playerAttText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerAttText.setPosition(sf::Vector2f(250.0f, 260.0f));
     playerAttText.setCharacterSize(characterSize);
     playerAttText.setFillColor(darkColor);
 
     //Add the player def text
     TextObject playerDefText("playerDefText", font, "DEF: 0");
-    playerDefText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerDefText.setPosition(sf::Vector2f(250.0f, 290.0f));
     playerDefText.setCharacterSize(characterSize);
     playerDefText.setFillColor(darkColor);
 
@@ -131,30 +131,30 @@ int main()
 
     //Add the enemy sprite
     SpriteObject enemySprite("enemySprite", enemy.getSpriteFile());
-    enemySprite.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemySprite.setPosition(sf::Vector2f(929.0f, 100.0f));
     enemySprite.setScale(sf::Vector2f(1.0f, 1.0f));
 
     //Add the enemy name text
     TextObject enemyNameText("enemyNameText", font, "NAME: X");
-    enemyNameText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyNameText.setPosition(sf::Vector2f(929.0f, 200.0f));
     enemyNameText.setCharacterSize(characterSize);
     enemyNameText.setFillColor(darkColor);
 
     //Add the enemy hp text
     TextObject enemyHpText("enemyHpText", font, "HP: 0");
-    enemyHpText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyHpText.setPosition(sf::Vector2f(929.0f, 230.0f));
     enemyHpText.setCharacterSize(characterSize);
     enemyHpText.setFillColor(darkColor);
 
     //Add the enemy att text
     TextObject enemyAttText("enemyAttText", font, "ATT: 0");
-    enemyAttText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyAttText.setPosition(sf::Vector2f(929.0f, 260.0f));
     enemyAttText.setCharacterSize(characterSize);
     enemyAttText.setFillColor(darkColor);
 
     //Add the enemy def text
     TextObject enemyDefText("enemyDefText", font, "DEF: 0");
-    enemyDefText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyDefText.setPosition(sf::Vector2f(929.0f, 290.0f));
     enemyDefText.setCharacterSize(characterSize);
     enemyDefText.setFillColor(darkColor);
 
