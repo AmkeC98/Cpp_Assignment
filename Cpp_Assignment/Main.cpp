@@ -1,103 +1,184 @@
 #include <fstream>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "AttackButton.hpp"
 #include "Button.hpp"
 #include "Character.hpp"
+#include "ContinueButton.hpp"
+#include "EraseButton.hpp"
 #include "FpsCounter.hpp"
+#include "HealButton.hpp"
+#include "MenuButton.hpp"
+#include "PlayButton.hpp"
 #include "QuitButton.hpp"
 #include "Scene.hpp"
-#include "SpriteObject.hpp"
 #include "SceneHandler.hpp"
+#include "SpriteObject.hpp"
 #include "TextObject.hpp"
-
-void characterAttackItself() 
-{
-    // GameObject& character = scene.getGameObjectByName("character");
-    //Make the character attack it self
-    printf("Hello world!\n");
-}
 
 int main()
 {
-	std::cout << "Hello World! \n";
-
-    sf::RenderWindow window(sf::VideoMode(400, 600), "SFML with Scenes!");
+    // ---------- GENERAL SETUP ---------- //
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Cpp Assignment '23-'24");
 
     FPSCounter fpsCounter;
 
     sf::Clock clock;
     sf::Time elapsed = clock.getElapsedTime();
 
-    Scene scene1("scene01");
-
-    SpriteObject sprite1("soldierSprite", "head.png");
-    sprite1.setPosition(sf::Vector2f(70.0f, 70.0f));
-    sprite1.setScale(sf::Vector2f(5.0f, 5.0f));
-    scene1.addGameObject(sprite1);
-
-    Scene scene2("scene02");
-
-    SpriteObject sprite2("soldierSprite", "head_hurt.png");
-    sprite2.setPosition(sf::Vector2f(70.0f, 70.0f));
-    sprite2.setScale(sf::Vector2f(5.0f, 5.0f));
-    scene2.addGameObject(sprite2);
-
-    SceneHandler handler;
-    handler.addScene(scene1);
-    handler.addScene(scene2);
-
-    int counter = 0;
-
-    Scene characterScreen("characterScreen");
-    Character character("Dude", "head.png", 10, 2, 2);
-
     sf::Font font;
-    font.loadFromFile("Lato-Regular.ttf");
+    font.loadFromFile("Arial.ttf");
+
     sf::Color darkColor = sf::Color(71, 82, 94, 255);
     sf::Color darkGreyColor = sf::Color(132, 146, 166, 255);
     sf::Color lightGreyColor = sf::Color(129, 144, 165, 255);
 
-    TextObject characterName("characterNameText", font, character.getName());
-    characterName.setPosition(sf::Vector2f(109.0f, 34.0f));
-    characterName.setCharacterSize(26);
-    characterName.setFillColor(darkColor);
+    int characterSize = 26;
 
-    SpriteObject characterAvatar("soldierSprite", character.getSpriteFile());
-    characterAvatar.setPosition(sf::Vector2f(135.0f, 90.0f));
-    characterAvatar.setScale(sf::Vector2f(2.5f, 2.5f));
+    int counter = 0;
 
-    TextObject hpText("hpText", font, "HP: " + std::to_string(character.getHP()));
-    hpText.setPosition(sf::Vector2f(161.0f, 238.0f));
-    hpText.setCharacterSize(26);
-    hpText.setFillColor(darkColor);
 
-    TextObject attackText("attackText", font, "ATTACK: " + std::to_string(character.getAttack()));
-    attackText.setPosition(sf::Vector2f(148.0f, 290.0f));
-    attackText.setCharacterSize(26);
-    attackText.setFillColor(darkColor);
+    // ---------- MENU SETUP ---------- //
+    //Create the main menu scene
+    Scene menuScene("menuScene");
 
-    TextObject defenseText("defenseText", font, "DEFENSE: " + std::to_string(character.getDefense()));
-    defenseText.setPosition(sf::Vector2f(140.0f, 345.0f));
-    defenseText.setCharacterSize(26);
-    defenseText.setFillColor(darkColor);
+    //Add the Play Game button
+    PlayButton playButton("playButton", font, "PLAY", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    playButton.setPosition(sf::Vector2f(108.0f, 540.0f));
 
-    Button attackItselfButton("attackItselfButton", font, "ATTACK ITSELF", sf::Vector2f(192.5f, 50.0f), darkColor);
-    attackItselfButton.setPosition(sf::Vector2f(108.0f, 400.0f));
+    //Add the Erase Data button
+    EraseButton eraseButton("eraseButton", font, "ERASE", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    eraseButton.setPosition(sf::Vector2f(108.0f, 540.0f));
 
-    Button loadButton("loadButton", font, "LOAD", sf::Vector2f(192.5f, 50.0f), darkColor);
-    loadButton.setPosition(sf::Vector2f(108.0f, 470.0f));
-
+    //Add the Quit Game button
     QuitButton quitButton("quitButton", font, "QUIT", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     quitButton.setPosition(sf::Vector2f(108.0f, 540.0f));
 
-    characterScreen.addGameObject(characterName);
-    characterScreen.addGameObject(characterAvatar);
-    characterScreen.addGameObject(hpText);
-    characterScreen.addGameObject(attackText);
-    characterScreen.addGameObject(defenseText);
-    characterScreen.addGameObject(attackItselfButton);
-    characterScreen.addGameObject(loadButton);
-    characterScreen.addGameObject(quitButton);
+    //Add the Rankings text
+    TextObject rankingsText("rankingsText", font, "PLACEHOLDER TEXT");
+    rankingsText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    rankingsText.setCharacterSize(characterSize);
+    rankingsText.setFillColor(darkColor);
+
+    //Add all to the scene
+    menuScene.addGameObject(playButton);
+    menuScene.addGameObject(eraseButton);
+    menuScene.addGameObject(quitButton);
+    menuScene.addGameObject(rankingsText);
+
+    // ---------- GAME SETUP ---------- //
+    //Create the fight game scene
+    Scene gameScene("gameScene");
+
+    //Add the Attack button
+    AttackButton attackButton("attackButton", font, "ATTACK", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    attackButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+
+    //Add the Heal button
+    HealButton healButton("healButton", font, "HEAL", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    healButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+
+    //Add the Continue button
+    ContinueButton continueButton("continueButton", font, "CONTINUE", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    continueButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+
+    //Add the Menu button
+    MenuButton menuButton("menuButton", font, "MENU", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    menuButton.setPosition(sf::Vector2f(108.0f, 540.0f));
+
+    //Add the results text
+    TextObject resultsText("resultsText", font, "PLACEHOLDER TEXT");
+    resultsText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    resultsText.setCharacterSize(characterSize);
+    resultsText.setFillColor(darkColor);
+
+    //Add the player
+    //Create the player character
+    Character player("player", "head.png", 10, 3, 3);
+
+    //Add the player sprite
+    SpriteObject playerSprite("playerSprite", player.getSpriteFile());
+    playerSprite.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerSprite.setScale(sf::Vector2f(1.0f, 1.0f));
+
+    //Add the player name text
+    TextObject playerNameText("playerNameText", font, "NAME: X");
+    playerNameText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerNameText.setCharacterSize(characterSize);
+    playerNameText.setFillColor(darkColor);
+
+    //Add the player hp text
+    TextObject playerHpText("playerHpText", font, "HP: 0");
+    playerHpText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerHpText.setCharacterSize(characterSize);
+    playerHpText.setFillColor(darkColor);
+
+    //Add the player att text
+    TextObject playerAttText("playerAttText", font, "ATT: 0");
+    playerAttText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerAttText.setCharacterSize(characterSize);
+    playerAttText.setFillColor(darkColor);
+
+    //Add the player def text
+    TextObject playerDefText("playerDefText", font, "DEF: 0");
+    playerDefText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    playerDefText.setCharacterSize(characterSize);
+    playerDefText.setFillColor(darkColor);
+
+    //Add the enemy
+    //Create the enemy character
+    Character enemy("enemy", "head_hurt.png", 10, 2, 2);
+
+    //Add the enemy sprite
+    SpriteObject enemySprite("enemySprite", enemy.getSpriteFile());
+    enemySprite.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemySprite.setScale(sf::Vector2f(1.0f, 1.0f));
+
+    //Add the enemy name text
+    TextObject enemyNameText("enemyNameText", font, "NAME: X");
+    enemyNameText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyNameText.setCharacterSize(characterSize);
+    enemyNameText.setFillColor(darkColor);
+
+    //Add the enemy hp text
+    TextObject enemyHpText("enemyHpText", font, "HP: 0");
+    enemyHpText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyHpText.setCharacterSize(characterSize);
+    enemyHpText.setFillColor(darkColor);
+
+    //Add the enemy att text
+    TextObject enemyAttText("enemyAttText", font, "ATT: 0");
+    enemyAttText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyAttText.setCharacterSize(characterSize);
+    enemyAttText.setFillColor(darkColor);
+
+    //Add the enemy def text
+    TextObject enemyDefText("enemyDefText", font, "DEF: 0");
+    enemyDefText.setPosition(sf::Vector2f(108.0f, 540.0f));
+    enemyDefText.setCharacterSize(characterSize);
+    enemyDefText.setFillColor(darkColor);
+
+    //Add all to the scene
+    gameScene.addGameObject(attackButton);
+    gameScene.addGameObject(healButton);
+    gameScene.addGameObject(continueButton);
+    gameScene.addGameObject(menuButton);
+    gameScene.addGameObject(resultsText);
+    gameScene.addGameObject(playerSprite);
+    gameScene.addGameObject(playerNameText);
+    gameScene.addGameObject(playerHpText);
+    gameScene.addGameObject(playerAttText);
+    gameScene.addGameObject(playerDefText);
+    gameScene.addGameObject(enemySprite);
+    gameScene.addGameObject(enemyNameText);
+    gameScene.addGameObject(enemyHpText);
+    gameScene.addGameObject(enemyAttText);
+    gameScene.addGameObject(enemyDefText);
+
+
+    SceneHandler handler;
+    handler.addScene(menuScene);
+    handler.addScene(gameScene);
 
     while (window.isOpen())
     {
@@ -110,16 +191,17 @@ int main()
             }
             else 
             {
-                characterScreen.handleEvent(event, window);
+                menuScene.handleEvent(event, window);
+                gameScene.handleEvent(event, window);
             }
-
+            
             if (event.type == sf::Event::KeyReleased) 
             {
                 if (event.key.code == sf::Keyboard::A) 
                 {
                     if (counter == 0) 
                     {
-                        handler.stackScene("scene02");
+                        handler.stackScene("gameScene");
                         counter++;
                     }
                     else 
@@ -138,9 +220,6 @@ int main()
 
         handler.update();
         handler.render(window);
-
-        characterScreen.update();
-        characterScreen.render(window);
 
         window.display();
 
