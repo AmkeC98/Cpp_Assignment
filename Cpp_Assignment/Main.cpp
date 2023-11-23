@@ -19,6 +19,7 @@
 int main()
 {
     // ---------- GENERAL SETUP ---------- //
+
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Cpp Assignment '23-'24");
 
     FPSCounter fpsCounter;
@@ -37,22 +38,32 @@ int main()
 
     int counter = 0;
 
-
-    // ---------- MENU SETUP ---------- //
     //Create the main menu scene
     Scene menuScene("menuScene");
+    //Create the fight game scene
+    Scene gameScene("gameScene");
+
+    SceneHandler handler;
+    handler.addScene(menuScene);
+    handler.addScene(gameScene);
+
+
+    // ---------- MENU SETUP ---------- //
 
     //Add the Play Game button
     PlayButton playButton("playButton", font, "PLAY", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     playButton.setPosition(sf::Vector2f(942.0f, 235.0f));
+    playButton.setCharacterSize(characterSize);
 
     //Add the Erase Data button
     EraseButton eraseButton("eraseButton", font, "ERASE", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     eraseButton.setPosition(sf::Vector2f(942.0f, 335.0f));
+    eraseButton.setCharacterSize(characterSize);
 
     //Add the Quit Game button
     QuitButton quitButton("quitButton", font, "QUIT", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     quitButton.setPosition(sf::Vector2f(942.0f, 435.0f));
+    quitButton.setCharacterSize(characterSize);
 
     //Add the Rankings text
     TextObject rankingsText("rankingsText", font, "PLACEHOLDER TEXT");
@@ -67,24 +78,26 @@ int main()
     menuScene.addGameObject(rankingsText);
 
     // ---------- GAME SETUP ---------- //
-    //Create the fight game scene
-    Scene gameScene("gameScene");
 
     //Add the Attack button
     AttackButton attackButton("attackButton", font, "ATTACK", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     attackButton.setPosition(sf::Vector2f(400.0f, 540.0f));
+    attackButton.setCharacterSize(characterSize);
 
     //Add the Heal button
     HealButton healButton("healButton", font, "HEAL", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     healButton.setPosition(sf::Vector2f(700.0f, 540.0f));
+    healButton.setCharacterSize(characterSize);
 
     //Add the Continue button
     ContinueButton continueButton("continueButton", font, "CONTINUE", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     continueButton.setPosition(sf::Vector2f(700.0f, 620.0f));
+    continueButton.setCharacterSize(characterSize);
 
     //Add the Menu button
     MenuButton menuButton("menuButton", font, "MENU", sf::Vector2f(192.5f, 50.0f), darkColor, window);
     menuButton.setPosition(sf::Vector2f(400.0f, 620.0f));
+    menuButton.setCharacterSize(characterSize);
 
     //Add the results text
     TextObject resultsText("resultsText", font, "PLACEHOLDER TEXT");
@@ -176,13 +189,12 @@ int main()
     gameScene.addGameObject(enemyDefText);
 
 
-    SceneHandler handler;
-    handler.addScene(menuScene);
-    handler.addScene(gameScene);
+    // ---------- GAME LOOP ---------- //
 
     while (window.isOpen())
     {
         sf::Event event;
+
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
