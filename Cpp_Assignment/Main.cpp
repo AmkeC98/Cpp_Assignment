@@ -115,7 +115,7 @@ int main()
     playerSprite.setScale(sf::Vector2f(1.0f, 1.0f));
 
     //Add the player name text
-    TextObject playerNameText("playerNameText", font, "NAME: X");
+    TextObject playerNameText("playerNameText", font, player.getName());
     playerNameText.setPosition(sf::Vector2f(250.0f, 200.0f));
     playerNameText.setCharacterSize(characterSize);
     playerNameText.setFillColor(darkColor);
@@ -148,7 +148,7 @@ int main()
     enemySprite.setScale(sf::Vector2f(1.0f, 1.0f));
 
     //Add the enemy name text
-    TextObject enemyNameText("enemyNameText", font, "NAME: X");
+    TextObject enemyNameText("enemyNameText", font, enemy.getName());
     enemyNameText.setPosition(sf::Vector2f(929.0f, 200.0f));
     enemyNameText.setCharacterSize(characterSize);
     enemyNameText.setFillColor(darkColor);

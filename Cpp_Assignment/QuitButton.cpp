@@ -11,5 +11,5 @@ QuitButton::~QuitButton()
 void QuitButton::onClick() 
 {
     printf("BUTTON CLICKED - QUIT BUTTON\n");
-    //this->window.close();
+    this->window.close();
 }
