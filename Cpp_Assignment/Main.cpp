@@ -48,6 +48,16 @@ int main()
     handler.addScene(gameScene);
 
 
+    // ---------- RANKINGS LIST SETUP ---------- //
+    std::ofstream myFileWrite("file.cmgt");
+
+    for (unsigned int i = 0; i < 5; i++)
+    {
+        myFileWrite << "Number: " + std::to_string(i + 1) << "\n";
+    }
+    myFileWrite.close();
+
+
     // ---------- MENU SETUP ---------- //
 
     //Add the Play Game button
@@ -76,6 +86,18 @@ int main()
     menuScene.addGameObject(eraseButton);
     menuScene.addGameObject(quitButton);
     menuScene.addGameObject(rankingsText);
+
+    //Get the rankings to put in the RankingsText
+    std::ifstream myFileRead("file.cmgt");
+    std::string line;
+    std::string fullString = "";
+    while (std::getline(myFileRead, line))
+    {
+        fullString = fullString + line.c_str() + "\n";
+    }
+    myFileRead.close();
+
+    rankingsText.setText(fullString);
 
 
     // ---------- GAME SETUP ---------- //
