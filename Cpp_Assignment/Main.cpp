@@ -122,19 +122,19 @@ int main()
     playerNameText.setFillColor(darkColor);
 
     //Add the player hp text
-    TextObject playerHpText("playerHpText", font, "HP: 0");
+    TextObject playerHpText("playerHpText", font, "HP: " + std::to_string(player.getHP()));
     playerHpText.setPosition(sf::Vector2f(250.0f, 230.0f));
     playerHpText.setCharacterSize(characterSize);
     playerHpText.setFillColor(darkColor);
 
     //Add the player att text
-    TextObject playerAttText("playerAttText", font, "ATT: 0");
+    TextObject playerAttText("playerAttText", font, "ATT: " + std::to_string(player.getAttack()));
     playerAttText.setPosition(sf::Vector2f(250.0f, 260.0f));
     playerAttText.setCharacterSize(characterSize);
     playerAttText.setFillColor(darkColor);
 
     //Add the player def text
-    TextObject playerDefText("playerDefText", font, "DEF: 0");
+    TextObject playerDefText("playerDefText", font, "DEF: " + std::to_string(player.getDefense()));
     playerDefText.setPosition(sf::Vector2f(250.0f, 290.0f));
     playerDefText.setCharacterSize(characterSize);
     playerDefText.setFillColor(darkColor);
@@ -155,19 +155,19 @@ int main()
     enemyNameText.setFillColor(darkColor);
 
     //Add the enemy hp text
-    TextObject enemyHpText("enemyHpText", font, "HP: 0");
+    TextObject enemyHpText("enemyHpText", font, "HP: " + std::to_string(enemy.getHP()));
     enemyHpText.setPosition(sf::Vector2f(929.0f, 230.0f));
     enemyHpText.setCharacterSize(characterSize);
     enemyHpText.setFillColor(darkColor);
 
     //Add the enemy att text
-    TextObject enemyAttText("enemyAttText", font, "ATT: 0");
+    TextObject enemyAttText("enemyAttText", font, "ATT: " + std::to_string(enemy.getAttack()));
     enemyAttText.setPosition(sf::Vector2f(929.0f, 260.0f));
     enemyAttText.setCharacterSize(characterSize);
     enemyAttText.setFillColor(darkColor);
 
     //Add the enemy def text
-    TextObject enemyDefText("enemyDefText", font, "DEF: 0");
+    TextObject enemyDefText("enemyDefText", font, "DEF: " + std::to_string(enemy.getDefense()));
     enemyDefText.setPosition(sf::Vector2f(929.0f, 290.0f));
     enemyDefText.setCharacterSize(characterSize);
     enemyDefText.setFillColor(darkColor);
