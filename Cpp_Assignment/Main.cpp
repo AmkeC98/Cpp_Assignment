@@ -51,7 +51,7 @@ int main()
     // ---------- MENU SETUP ---------- //
 
     //Add the Play Game button
-    PlayButton playButton("playButton", font, "PLAY", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    PlayButton playButton("playButton", font, "PLAY", sf::Vector2f(192.5f, 50.0f), darkColor, window, handler, counter);
     playButton.setPosition(sf::Vector2f(942.0f, 235.0f));
     playButton.setCharacterSize(characterSize);
 
@@ -76,6 +76,7 @@ int main()
     menuScene.addGameObject(eraseButton);
     menuScene.addGameObject(quitButton);
     menuScene.addGameObject(rankingsText);
+
 
     // ---------- GAME SETUP ---------- //
 
@@ -205,23 +206,6 @@ int main()
             {
                 menuScene.handleEvent(event, window);
                 gameScene.handleEvent(event, window);
-            }
-            
-            if (event.type == sf::Event::KeyReleased) 
-            {
-                if (event.key.code == sf::Keyboard::A) 
-                {
-                    if (counter == 0) 
-                    {
-                        handler.stackScene("gameScene");
-                        counter++;
-                    }
-                    else 
-                    {
-                        handler.popScene();
-                        counter--;
-                    }
-                }
             }
         }
 
