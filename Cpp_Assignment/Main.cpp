@@ -96,7 +96,7 @@ int main()
     continueButton.setCharacterSize(characterSize);
 
     //Add the Menu button
-    MenuButton menuButton("menuButton", font, "MENU", sf::Vector2f(192.5f, 50.0f), darkColor, window);
+    MenuButton menuButton("menuButton", font, "MENU", sf::Vector2f(192.5f, 50.0f), darkColor, window, handler, counter);
     menuButton.setPosition(sf::Vector2f(400.0f, 620.0f));
     menuButton.setCharacterSize(characterSize);
 
